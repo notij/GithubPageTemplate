@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobby - Name</title>
+    <link rel="stylesheet" href="static/css/template.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <script>
+        window.scroll_effect_height = 80;
+    </script>
+</head>
+<body class="hobby-page">
+
+    <nav class="top-nav">
+        <ul>
+            <li><a href="index.html#" style="font-weight: 700; color: white !important;">Name</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#publication">Publication</a></li>
+            <li><a href="index.html#awards">Awards</a></li>
+            <li><a href="hobby.html">Hobby</a></li>
+            <li style="width: auto; padding-left: 20px;">
+                <button id="cursor-btn" style="background: none; border: none; cursor: pointer;">
+                    <img src="static/images/cursors/hime-pointer.png" alt="Cursor" height="30">
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Cursor Option Box -->
+    <div id="cursor-box" class="option-box">
+        <div style="padding: 10px;">
+            <p>Select Cursor Style:</p>
+            <ul id="cursor-container">
+                <!-- Dynamically populated by template.js -->
+            </ul>
+            <hr>
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span>Cursor Effect:</span>
+                <button id="cursor_effect_btn" class="cursor_effect_btn" style="background: none; border: none; cursor: pointer;">
+                    <img id="cursor_effect_on" src="static/images/on-button.png" alt="On" height="30" style="display: none;">
+                    <img id="cursor_effect_off" src="static/images/off-button.png" alt="Off" height="30">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <section style="padding: 120px 20px 60px; text-align: center; max-width: 800px; margin: 0 auto;">
+            <h1>My Hobbies</h1>
+            <p style="color: #666; font-size: 1.2em;">Life outside of research</p>
+            
+            <div style="margin-top: 40px; text-align: left;">
+                <h2 id="hobby">Interests</h2>
+                <hr>
+                <div style="margin-bottom: 20px;">
+                    <h3>Photography</h3>
+                    <p>I enjoy capturing urban landscapes and nature during my travels.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3>Music</h3>
+                    <p>I'm a fan of various genres and enjoy exploring local music scenes.</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <h3>Gaming</h3>
+                    <p>I enjoy playing games like Splatoon, which inspired this website's theme!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="static/js/template.js"></script>
+    <script src="static/js/index.js"></script>
+</body>
+</html>
