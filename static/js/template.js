@@ -3,34 +3,72 @@
   Global Constants & Configuration
 */
 const cursors = [
-  "agent3", "agent4", "agent8", "bigman", "callie", "captain", "hime",
-  "inkling", "judd", "lijudd", "marie", "marina", "shiver",
+  "agent3",
+  "agent4",
+  "agent8",
+  "bigman",
+  "callie",
+  "captain",
+  "hime",
+  "inkling",
+  "judd",
+  "lijudd",
+  "marie",
+  "marina",
+  "shiver",
 ];
 
 const cursor_to_color = {
-  agent3: "6EF9AF", agent4: "FFDF2C", agent8: "FA017E", bigman: "4D4C56",
-  callie: "ED55B3", captain: "AD9B1D", hime: "FCE9C6", inkling: "17B916",
-  judd: "D80C4B", lijudd: "68FF53", marie: "D7E6E4", marina: "420D3D", shiver: "3D43CE",
+  agent3: "6EF9AF",
+  agent4: "FFDF2C",
+  agent8: "FA017E",
+  bigman: "4D4C56",
+  callie: "ED55B3",
+  captain: "AD9B1D",
+  hime: "FCE9C6",
+  inkling: "17B916",
+  judd: "D80C4B",
+  lijudd: "68FF53",
+  marie: "D7E6E4",
+  marina: "420D3D",
+  shiver: "3D43CE",
 };
 
 const cursor_to_color_hsl = {
-  agent3: { h: 160, s: 100, l: 50 }, agent4: { h: 50, s: 100, l: 50 },
-  agent8: { h: 320, s: 100, l: 50 }, bigman: { h: 240, s: 0, l: 33 },
-  callie: { h: 320, s: 100, l: 50 }, captain: { h: 50, s: 100, l: 50 },
-  hime: { h: 23, s: 84, l: 93 }, inkling: { h: 120, s: 100, l: 50 },
-  judd: { h: 320, s: 100, l: 50 }, lijudd: { h: 120, s: 100, l: 50 },
-  marie: { h: 180, s: 0, l: 90 }, marina: { h: 306, s: 67, l: 15 }, shiver: { h: 240, s: 100, l: 50 },
+  agent3: { h: 160, s: 100, l: 50 },
+  agent4: { h: 50, s: 100, l: 50 },
+  agent8: { h: 320, s: 100, l: 50 },
+  bigman: { h: 240, s: 0, l: 33 },
+  callie: { h: 320, s: 100, l: 50 },
+  captain: { h: 50, s: 100, l: 50 },
+  hime: { h: 23, s: 84, l: 93 },
+  inkling: { h: 120, s: 100, l: 50 },
+  judd: { h: 320, s: 100, l: 50 },
+  lijudd: { h: 120, s: 100, l: 50 },
+  marie: { h: 180, s: 0, l: 90 },
+  marina: { h: 306, s: 67, l: 15 },
+  shiver: { h: 240, s: 100, l: 50 },
 };
 
 // Global ink state
-window.r = 0; window.g = 0; window.b = 0;
-window.h = 0; window.s = 0; window.l = 0;
-window.base_h = 282; window.base_s = 77; window.base_l = 50;
+window.r = 0;
+window.g = 0;
+window.b = 0;
+window.h = 0;
+window.s = 0;
+window.l = 0;
+window.base_h = 282;
+window.base_s = 77;
+window.base_l = 50;
 
 const cursor_template = ({ name }) => `
 <li id="li-${name}" class="cursor-option">
     <img src="static/images/cursors/${name}-pack.png" alt="${name}" height="40">
 </li>`;
+
+// Selectors that should show custom pointer on hover (all pages)
+const POINTER_SELECTORS =
+  'a, button, .cursor-option, #cursor-container li, [role="button"], .record-clickable, .record-modal-backdrop, .record-modal-close, #about-btn, .about-modal-backdrop, .about-modal-close';
 
 //////////////////////////////////////////////////////////////
 /*
@@ -38,14 +76,23 @@ const cursor_template = ({ name }) => `
 */
 window.addEventListener("load", () => {
   const currentCursorName = sessionStorage.getItem("cursor_name") || "hime";
-  
+
   // Set defaults if not present
   if (!sessionStorage.getItem("cursor_name")) {
     sessionStorage.setItem("cursor_name", "hime");
-    sessionStorage.setItem("cursor", "url(static/images/cursors/hime-cursor.png), auto");
-    sessionStorage.setItem("pointer", "url(static/images/cursors/hime-pointer.png), auto");
+    sessionStorage.setItem(
+      "cursor",
+      "url(static/images/cursors/hime-cursor.png), auto",
+    );
+    sessionStorage.setItem(
+      "pointer",
+      "url(static/images/cursors/hime-pointer.png), auto",
+    );
     sessionStorage.setItem("ink_color", "FCE9C6");
-    sessionStorage.setItem("ink_color_hsl", JSON.stringify(cursor_to_color_hsl["hime"]));
+    sessionStorage.setItem(
+      "ink_color_hsl",
+      JSON.stringify(cursor_to_color_hsl["hime"]),
+    );
   }
 
   // Update ink colors from storage
@@ -60,8 +107,8 @@ window.addEventListener("load", () => {
 
   // Apply cursor style
   document.documentElement.style.cursor = sessionStorage.getItem("cursor");
-  
-  // Dynamic style for interactive elements
+
+  // Dynamic style: use custom pointer on all clickable/hover elements
   const styleId = "dynamic-cursor-style";
   let styleEl = document.getElementById(styleId);
   if (!styleEl) {
@@ -70,7 +117,7 @@ window.addEventListener("load", () => {
     document.head.appendChild(styleEl);
   }
   styleEl.innerHTML = `
-    a, button, .cursor-option, [role="button"] { 
+    ${POINTER_SELECTORS} { 
       cursor: ${sessionStorage.getItem("pointer")} !important; 
     }
   `;
@@ -86,27 +133,30 @@ window.addEventListener("load", () => {
     cursorContainer.innerHTML = ""; // Clear existing
     cursors.forEach((name) => {
       const html = cursor_template({ name });
-      cursorContainer.insertAdjacentHTML('beforeend', html);
-      
+      cursorContainer.insertAdjacentHTML("beforeend", html);
+
       // Bind click event to each option
       document.getElementById(`li-${name}`).addEventListener("click", () => {
         const cursorPath = `static/images/cursors/${name}-cursor.png`;
         const pointerPath = `static/images/cursors/${name}-pointer.png`;
         const cursorUrl = `url(${cursorPath}), auto`;
         const pointerUrl = `url(${pointerPath}), auto`;
-        
+
         sessionStorage.setItem("cursor", cursorUrl);
         sessionStorage.setItem("pointer", pointerUrl);
         sessionStorage.setItem("cursor_name", name);
         sessionStorage.setItem("ink_color", cursor_to_color[name]);
-        sessionStorage.setItem("ink_color_hsl", JSON.stringify(cursor_to_color_hsl[name]));
+        sessionStorage.setItem(
+          "ink_color_hsl",
+          JSON.stringify(cursor_to_color_hsl[name]),
+        );
 
         // Immediate application
         document.documentElement.style.cursor = cursorUrl;
         const styleEl = document.getElementById("dynamic-cursor-style");
         if (styleEl) {
           styleEl.innerHTML = `
-            a, button, .cursor-option, [role="button"] { 
+            ${POINTER_SELECTORS} { 
               cursor: ${pointerUrl} !important; 
             }
           `;
@@ -120,13 +170,35 @@ window.addEventListener("load", () => {
         window.h = cursor_to_color_hsl[name].h;
         window.s = cursor_to_color_hsl[name].s;
         window.l = cursor_to_color_hsl[name].l;
-        
+
         // Visual feedback: briefly hide and show container to force redraw on some mobile browsers
         cursorContainer.style.display = "none";
-        setTimeout(() => { cursorContainer.style.display = "flex"; }, 50);
+        setTimeout(() => {
+          cursorContainer.style.display = "flex";
+        }, 50);
       });
     });
   }
+});
+
+/*
+  Back to Top Button Logic
+*/
+const backToTopBtn = document.getElementById("back-to-top");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add("visible");
+  } else {
+    backToTopBtn.classList.remove("visible");
+  }
+});
+
+backToTopBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 });
 
 //////////////////////////////////////////////////////////////
@@ -136,9 +208,15 @@ window.addEventListener("load", () => {
 function positionCursorBox() {
   const cursorBox = document.getElementById("cursor-box");
   const cursorBtn = document.getElementById("cursor-btn");
-  if (cursorBox && cursorBox.classList.contains("option-box-visible") && cursorBtn) {
+  const topNav = document.querySelector(".top-nav");
+  if (
+    cursorBox &&
+    cursorBox.classList.contains("option-box-visible") &&
+    cursorBtn
+  ) {
+    const navHeight = topNav ? topNav.offsetHeight : 60;
     const btnRect = cursorBtn.getBoundingClientRect();
-    cursorBox.style.top = `${btnRect.bottom + window.scrollY + 10}px`;
+    cursorBox.style.top = `${navHeight + 10}px`;
     cursorBox.style.left = `${btnRect.left + btnRect.width - cursorBox.offsetWidth}px`;
   }
 }
@@ -159,9 +237,53 @@ window.addEventListener("resize", positionCursorBox);
 document.addEventListener("click", (event) => {
   const cursorBox = document.getElementById("cursor-box");
   const cursorBtn = document.getElementById("cursor-btn");
-  if (cursorBox && cursorBtn && !cursorBox.contains(event.target) && !cursorBtn.contains(event.target)) {
+  if (
+    cursorBox &&
+    cursorBtn &&
+    !cursorBox.contains(event.target) &&
+    !cursorBtn.contains(event.target)
+  ) {
     cursorBox.classList.remove("option-box-visible");
   }
+});
+
+//////////////////////////////////////////////////////////////
+/*
+  About Modal
+*/
+const aboutBtn = document.getElementById("about-btn");
+const aboutModal = document.getElementById("about-modal");
+const aboutBackdrop =
+  aboutModal && aboutModal.querySelector(".about-modal-backdrop");
+const aboutCloseBtn =
+  aboutModal && aboutModal.querySelector(".about-modal-close");
+
+function closeAboutModal() {
+  if (!aboutModal) return;
+  aboutModal.classList.remove("about-modal-open");
+  aboutModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+if (aboutBtn) {
+  aboutBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (aboutModal) {
+      aboutModal.classList.add("about-modal-open");
+      aboutModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+  });
+}
+if (aboutBackdrop) aboutBackdrop.addEventListener("click", closeAboutModal);
+if (aboutCloseBtn) aboutCloseBtn.addEventListener("click", closeAboutModal);
+document.addEventListener("keydown", (e) => {
+  if (
+    e.key === "Escape" &&
+    aboutModal &&
+    aboutModal.classList.contains("about-modal-open")
+  )
+    closeAboutModal();
 });
 
 //////////////////////////////////////////////////////////////
@@ -187,7 +309,9 @@ if (effectBtn) {
 }
 
 const container = document.getElementById("main-container");
-function getRandomInt(min, max) { return Math.floor(Math.random() * (max - min + 1) + min); }
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 function getRandomColor() {
   const r = Math.min(255, Math.max(0, window.r + getRandomInt(-15, 15)));
   const g = Math.min(255, Math.max(0, window.g + getRandomInt(-15, 15)));
@@ -219,7 +343,8 @@ if (container) {
     }
   });
 
-  const splat_template = ({ id, height }) => `<img src="static/images/splats/${id}.svg" height="${height}">`;
+  const splat_template = ({ id, height }) =>
+    `<img src="static/images/splats/${id}.svg" height="${height}">`;
 
   let clickTimer = null;
   container.addEventListener("click", (e) => {
@@ -237,7 +362,10 @@ if (container) {
           splat.style.top = `${clickY - rect.top - height / 2}px`;
 
           const imageId = Math.floor(Math.random() * 18) + 1;
-          splat.innerHTML = splat_template({ id: "splat" + imageId, height: height });
+          splat.innerHTML = splat_template({
+            id: "splat" + imageId,
+            height: height,
+          });
           container.appendChild(splat);
 
           const h_filter = window.h - window.base_h;
@@ -250,7 +378,13 @@ if (container) {
 
           splat.style.filter = `hue-rotate(${h_filter}deg) saturate(${s_filter}%) brightness(${l_filter}%) opacity(${opa})`;
 
-          splat.animate([{ transform: "scale(0)", opacity: 1 }, { transform: "scale(1)", opacity: 1 }], { duration: 100, fill: "forwards" });
+          splat.animate(
+            [
+              { transform: "scale(0)", opacity: 1 },
+              { transform: "scale(1)", opacity: 1 },
+            ],
+            { duration: 100, fill: "forwards" },
+          );
           setTimeout(() => {
             splat.style.opacity = "0";
             setTimeout(() => splat.remove(), 500);

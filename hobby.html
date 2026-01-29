@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hobby - Name</title>
+    <title>Hobby - Your Name</title>
     <link rel="stylesheet" href="static/css/template.css">
     <link rel="stylesheet" href="static/css/index.css">
     <script>
         window.scroll_effect_height = 80;
     </script>
 </head>
+
 <body class="hobby-page">
 
     <nav class="top-nav">
         <ul>
-            <li><a href="index.html#" style="font-weight: 700; color: white !important;">Name</a></li>
-            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#" style="font-weight: 700; color: white !important;">Your Name</a></li>
             <li><a href="index.html#publication">Publication</a></li>
             <li><a href="index.html#awards">Awards</a></li>
             <li><a href="hobby.html">Hobby</a></li>
+            <li><a href="#" id="about-btn">About</a></li>
             <li style="width: auto; padding-left: 20px;">
                 <button id="cursor-btn" style="background: none; border: none; cursor: pointer;">
                     <img src="static/images/cursors/hime-pointer.png" alt="Cursor" height="30">
@@ -37,41 +39,160 @@
             <hr>
             <div style="display: flex; align-items: center; justify-content: space-between;">
                 <span>Cursor Effect:</span>
-                <button id="cursor_effect_btn" class="cursor_effect_btn" style="background: none; border: none; cursor: pointer;">
-                    <img id="cursor_effect_on" src="static/images/on-button.png" alt="On" height="30" style="display: none;">
+                <button id="cursor_effect_btn" class="cursor_effect_btn"
+                    style="background: none; border: none; cursor: pointer;">
+                    <img id="cursor_effect_on" src="static/images/on-button.png" alt="On" height="30"
+                        style="display: none;">
                     <img id="cursor_effect_off" src="static/images/off-button.png" alt="Off" height="30">
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- About modal -->
+    <div id="about-modal" class="about-modal" aria-hidden="true">
+        <div class="about-modal-backdrop"></div>
+        <div class="about-modal-content">
+            <button type="button" class="about-modal-close" aria-label="Close">&times;</button>
+            <h3 class="about-modal-title">About</h3>
+            <p>This site and template were developed by <a href="https://notij.github.io" target="_blank" rel="noopener noreferrer"><strong>Xianshun Jiang</strong></a> with the help of <a
+                    href="https://cursor.com" target="_blank" rel="noopener noreferrer">Cursor</a>.</p>
+            <p>Cursor images on this site were downloaded from <a
+                    href="https://custom-cursor.com/en/collection/splatoon" target="_blank"
+                    rel="noopener noreferrer"><img src="static/images/media/cursor.svg" alt="Custom Cursor – Splatoon collection" class="about-link-icon" width="20" height="20"></a>.</p>
+            <p>Fonts were downloaded from <a href="https://github.com/North-West-Wind/splatoon3-fonts" target="_blank"
+                    rel="noopener noreferrer"><img src="static/images/media/github.svg" alt="North-West-Wind/splatoon3-fonts" class="about-link-icon" width="20" height="20"></a> (Splatoon 3 fonts on GitHub).</p>
+            <p>Want to use this template? You can download it from <a href="https://github.com/notij/GithubPageTemplate" target="_blank"
+                    rel="noopener noreferrer"><img src="static/images/media/github.svg" alt="GithubPageTemplate" class="about-link-icon" width="20" height="20"></a>.</p>
+        </div>
+    </div>
+
     <div id="main-container">
         <section style="padding: 120px 20px 60px; text-align: center; max-width: 800px; margin: 0 auto;">
             <h1>My Hobbies</h1>
-            <p style="color: #666; font-size: 1.2em;">Life outside of research</p>
-            
-            <div style="margin-top: 40px; text-align: left;">
-                <h2 id="hobby">Interests</h2>
-                <hr>
-                <div style="margin-bottom: 20px;">
-                    <h3>Photography</h3>
-                    <p>I enjoy capturing urban landscapes and nature during my travels.</p>
-                </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <h3>Music</h3>
-                    <p>I'm a fan of various genres and enjoy exploring local music scenes.</p>
-                </div>
+            <p style="color: #666; font-size: 1.2em;">Life outside of work</p>
 
-                <div style="margin-bottom: 20px;">
-                    <h3>Gaming</h3>
-                    <p>I enjoy playing games like Splatoon, which inspired this website's theme!</p>
+            <!-- Table of Contents -->
+            <div class="toc-container">
+                <h3>Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#section1">Section 1</a></li>
+                    <li><a href="#section2">Section 2</a></li>
+                    <li><a href="#section3">Section 3</a></li>
+                </ul>
+            </div>
+
+            <div style="margin-top: 40px; text-align: left;">
+                <div class="hobby-section">
+                    <h3 id="section1">Section 1</h3>
+                    <p>Add your content here. You can use the records grid or list styles from the original template.</p>
+                </div>
+                <hr class="hobby-break">
+                <div class="hobby-section">
+                    <h3 id="section2">Section 2</h3>
+                    <p>Add your content here.</p>
+                </div>
+                <hr class="hobby-break">
+                <div class="hobby-section">
+                    <h3 id="section3">Section 3</h3>
+                    <p>Coming soon...</p>
                 </div>
             </div>
         </section>
     </div>
 
+    <a href="#" id="back-to-top"><i></i></a>
+
+    <!-- Record modal (image or PDF) -->
+    <div id="record-modal" class="record-modal" aria-hidden="true">
+        <div class="record-modal-backdrop"></div>
+        <div class="record-modal-content">
+            <button type="button" class="record-modal-close" aria-label="Close">&times;</button>
+            <img id="record-modal-img" src="" alt="Record screenshot" class="record-modal-media">
+            <iframe id="record-modal-iframe" src="" title="Record PDF"
+                class="record-modal-media record-modal-iframe"></iframe>
+        </div>
+    </div>
+
     <script src="static/js/template.js"></script>
     <script src="static/js/index.js"></script>
+    <script>
+        (function () {
+            var RECORD_IMAGE_BASE = 'static/records/splatoon/nightless/';
+            var modal = document.getElementById('record-modal');
+            var modalImg = document.getElementById('record-modal-img');
+            var modalIframe = document.getElementById('record-modal-iframe');
+            var backdrop = modal && modal.querySelector('.record-modal-backdrop');
+            var closeBtn = modal && modal.querySelector('.record-modal-close');
+
+            function openModalImage(imageName) {
+                if (!modal || !modalImg || !modalIframe) return;
+                modalIframe.style.display = 'none';
+                modalIframe.src = '';
+                modalImg.style.display = 'block';
+                modalImg.src = RECORD_IMAGE_BASE + imageName;
+                modal.classList.add('record-modal-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function openModalImageFromPath(basePath, fileName) {
+                if (!modal || !modalImg || !modalIframe) return;
+                modalIframe.style.display = 'none';
+                modalIframe.src = '';
+                modalImg.style.display = 'block';
+                modalImg.src = basePath + fileName;
+                modal.classList.add('record-modal-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function openModalPdf(basePath, fileName) {
+                if (!modal || !modalImg || !modalIframe) return;
+                modalImg.style.display = 'none';
+                modalImg.src = '';
+                modalIframe.style.display = 'block';
+                modalIframe.src = basePath + fileName;
+                modal.classList.add('record-modal-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                if (!modal) return;
+                modal.classList.remove('record-modal-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                if (modalImg) modalImg.src = '';
+                if (modalIframe) { modalIframe.src = ''; modalIframe.style.display = 'none'; }
+                if (modalImg) modalImg.style.display = 'block';
+            }
+
+            document.querySelectorAll('.record-clickable').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    var type = this.getAttribute('data-record-type');
+                    if (type === 'pdf') {
+                        var base = this.getAttribute('data-record-base') || '';
+                        var file = this.getAttribute('data-record-file');
+                        if (file) openModalPdf(base, file);
+                    } else if (type === 'image') {
+                        var base = this.getAttribute('data-record-base') || '';
+                        var file = this.getAttribute('data-record-file');
+                        if (file) openModalImageFromPath(base, file);
+                    } else {
+                        var img = this.getAttribute('data-record-image');
+                        if (img) openModalImage(img);
+                    }
+                });
+            });
+
+            if (backdrop) backdrop.addEventListener('click', closeModal);
+            if (closeBtn) closeBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal && modal.classList.contains('record-modal-open')) closeModal();
+            });
+        })();
+    </script>
 </body>
+
 </html>

@@ -31,12 +31,12 @@ body {
 }
 .top-nav a {
     text-decoration: none;
-    color: #888; /* 默认灰色 */
+    color: #888; /* Default gray */
     font-weight: 500;
     transition: color 0.3s;
 }
 .top-nav a:hover {
-    color: white !important; /* 悬停时白色 */
+    color: white !important; /* White on hover */
 }
 .top-nav ul {
     list-style: none;
@@ -71,6 +71,84 @@ body {
 }
 .option-box-visible {
     display: block;
+}
+
+/* About modal */
+.about-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.2s, opacity 0.2s ease;
+}
+.about-modal.about-modal-open {
+    visibility: visible;
+    opacity: 1;
+}
+.about-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+.about-modal-content {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    padding: 24px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.about-modal-title {
+    margin: 0 0 16px 0;
+    font-size: 1.4em;
+}
+.about-modal-content p {
+    margin: 0 0 12px 0;
+    line-height: 1.5;
+    color: #333;
+}
+.about-modal-content p:last-child {
+    margin-bottom: 0;
+}
+.about-modal-content a {
+    color: #5dade2;
+    text-decoration: none;
+}
+.about-modal-content a:hover {
+    text-decoration: underline;
+}
+.about-modal-content .about-github-logo,
+.about-modal-content .about-link-icon {
+    vertical-align: middle;
+    margin-right: 2px;
+}
+.about-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    font-size: 24px;
+    line-height: 1;
+    color: #666;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.about-modal-close:hover {
+    background: #f0f0f0;
+    color: #333;
 }
 
 /* cursor effect */
